@@ -1,0 +1,95 @@
+input.text{
+	border: 1px solid #D9D9D9;
+    border-radius: 3px 3px 3px 3px;
+    color: #666666;
+    font-family: "Microsoft Yahei",Tahoma;
+    font-size: 16px;
+    height: 23px;
+    padding: 14px 0 14px 9px;
+    width: 259px;
+}
+
+input.submit{ 
+	width:40px; 
+	background:#005eac; 
+	color:#fff;
+	overflow: hidden; 
+	padding:0; 
+	height:30px; 
+	font-family: "Microsoft Yahei",Tahoma;
+    cursor:pointer;
+}
+
+.input-text-c {
+    border: 1px solid #A7A6AA;
+    height: 18px;
+    padding: 2px 0 0;
+    text-align: center;
+}
+
+.error{ color:#f00; }
+
+.subnav{ padding: 10px; text-align:left;}
+.subnav h2 { margin-bottom: 6px;}
+
+.content-menu {padding: 0 0 6px;}
+.content-menu a:hover {text-decoration: none;}
+.content-menu a em {display: inline-block;}
+.content-menu a.add, .content-menu a.add em, .content-menu a.on, .content-menu a.on em {
+    background: url("../images/manage/bnt_bg.png") no-repeat scroll 0 0 transparent;
+    height: 28px;
+    line-height: 28px;
+}
+.content-menu span {color: #DDDDDD;    padding: 0 8px;}
+.content-menu a {cursor: pointer; display:inline-block; color:#004499;}
+.content-menu a.add {padding: 0 0 0 5px;}
+.content-menu a.add em {
+    background-position: right top;
+    color: #FFFFFF;
+    padding: 0 10px 0 5px;
+}
+.content-menu a.on {
+    background-position: left -40px;
+    color: #FFFFFF;
+    padding: 0 0 0 5px;
+    cursor:default;
+}
+.content-menu a.on em {
+    background-position: right -40px;
+    padding: 0 10px 0 5px;
+}
+
+.table-list td, .table-list th {
+    padding-left: 12px;
+}
+.table-list thead th {
+    background: none repeat scroll 0 0 #EEF3F7;
+    border-bottom: 1px solid #D5DFE8;
+    font-weight: normal;
+    height: 30px;
+}
+.table-list tbody td, .table-list .btn {
+    border-bottom: 1px solid #EEEEEE;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+div.btn {
+    background: none repeat scroll 0 0 #F6F6F6;
+    height: 30px;
+    line-height: 30px;
+    padding: 6px 12px 0;
+	text-align:left;
+}
+.table-list tr:hover, .table-list table tbody tr:hover {
+    background: none repeat scroll 0 0 #FBFFE4;
+}
+.nHover tr:hover, .nHover tr:hover td {
+    background: none repeat scroll 0 0 transparent;
+}
+.table-list .input-text-c {
+    height: 18px;
+    padding: 0;
+}
+
+.page .input-text{float:none; width:40px; text-align:center; padding-right:5px; color:#666;}
+.page span{padding:0 5px; cursor:pointer;}

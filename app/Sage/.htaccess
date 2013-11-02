@@ -1,0 +1,12 @@
+# 取消目录显示
+Options -Indexes
+
+# 打开url的rewrite模块
+RewriteEngine On
+
+# 对于已存在的文件或文件夹就不使用rewrite
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# rewrite到index.php/请求url参数，例如：
+RewriteRule ^(.*)$ index.php/$1 [PT,L]

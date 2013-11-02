@@ -1,0 +1,47 @@
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
+    margin: 0;
+    padding: 0;
+}
+ul,ol,li{list-style:none;}
+
+body{
+	padding:0;
+	margin:0; 
+	text-align:center;
+	font-size:14px; 
+	font-family:tahoma,arial,'Microsoft Yahei',宋体,sans-serif;
+	background:#333;
+}
+
+.wrapper{ margin:10px; background:#fff; padding:10px; overflow:auto;}
+.component{ float:left; background:#333; color:#fff; font-size:24px; font-weight:bold; margin:0 10px 10px 0;cursor:pointer; /*border-top-left-radius: 30px;*/ outline:0;}
+.component:hover{outline:3px solid; outline-color:#000;}
+
+
+/* tile */
+.tile{ width:150px; height:150px; }
+.double{ width:310px!important;}
+.double-vertical{ height:310px!important;}
+
+
+/* COLOR */
+.background-color-blue {background-color: #2d89ef !important;}
+.background-color-blueLight {background-color: #eff4ff !important;}
+.background-color-blueDark {background-color: #2b5797 !important;}
+.background-color-green {background-color: #00a300 !important;}
+.background-color-greenLight {background-color: #99b433 !important;}
+.background-color-greenDark {background-color: #1e7145 !important;}
+.background-color-red {background-color: #b91d47 !important;}
+.background-color-yellow {background-color: #ffc40d !important;}
+.background-color-orange {background-color: #e3a21a !important;}
+.background-color-orangeDark {background-color: #da532c !important;}
+.background-color-pink {background-color: #9f00a7 !important;}
+.background-color-pinkDark {background-color: #7e3878 !important;}
+.background-color-purple {background-color: #603cba !important;}
+.background-color-darken {background-color: #1d1d1d !important;}
+.background-color-lighten {background-color: #d5e7ec !important;}
+.background-color-white {background-color: #ffffff !important;}
+.background-color-grayDark {background-color: #525252 !important;}
+.background-color-magenta {background-color: #ff0097 !important;}
+.background-color-teal {background-color: #00aba9 !important;}
+.background-color-redLight {background-color: #ee1111 !important;}
