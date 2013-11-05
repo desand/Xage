@@ -59,8 +59,8 @@ class Manage extends Base_Controller
 				foreach ($$target as $key => $each){
 					$data = $this->regs_model->q($each['q']);
 					
-					if($i+1 == $total){
-						echo '<script type="text/javascript">$("#loading", parent.document).animate({"height":"'.($i/$total*120).'"},function(){setTimeout(function(){window.parent.init()},500);})</script>';
+					if($i == $total){
+						echo '<script type="text/javascript">$("#loading", parent.document).animate({"height":"'.($i/$total*120).'"},function(){setTimeout(function(){window.parent.init()},5);})</script>';
 					}else{
 						echo '<script type="text/javascript">$("#loading", parent.document).animate({"height":"'.($i/$total*120).'"})</script>';
 					}
@@ -70,7 +70,9 @@ class Manage extends Base_Controller
 					usleep(1);
 					++$i;
 				}
-				//echo '<script type="text/javascript">window.parent.init()</script>';
+				/*if($total == 1){
+					echo '<script type="text/javascript">setTimeout(function(){window.parent.init()},500);</script>';
+				}*/
 			
 				break;
 			}

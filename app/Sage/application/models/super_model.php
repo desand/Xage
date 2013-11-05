@@ -103,30 +103,30 @@ class Super_model extends CI_Model {
     }
     
     /* BASE */
-    function get_detail($id,$type = false)
+    function get_detail($id)
     {
     	return $this->db->get_where($this->table, array($this->id => $id))->first_row('array');
     }
     
-    function get_detail_by_other($conditions,$type = false)
+    function get_detail_by_other($conditions)
     {
     	return $this->db->get_where($this->table, $conditions)->result('array');
     }
     
-    function insert_entry($data,$type = false)
+    function insert_entry($data)
     {
         $this->db->insert($this->table, $data);
         return $this->db->insert_id();
     }
 	
-	function del_entry($id,$type = false)
+	function del_entry($id)
     {
     	return $this->db->delete($this->table, array('id' => $id)); 
     }
     
-	function del_entry_by_fid($fid)
+	function del_entry_by_fid($conditions)
     {
-    	return $this->db->delete($this->answer, array('fid' => $fid)); 
+    	return $this->db->delete($this->table, $conditions); 
     }
 
 }

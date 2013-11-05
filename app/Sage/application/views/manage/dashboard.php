@@ -36,7 +36,6 @@
 var loadingtimer;
 
 $(document).ready(function(){
-	$('#hideiframe').attr('src',$('#xmlurl').val());
 
 	$('.component').click(function(){
 		loading();
@@ -46,6 +45,8 @@ $(document).ready(function(){
 	$(window).resize(function(){
 		_initsize();
 	});
+
+	$('#hideiframe').attr('src',$('#xmlurl').val());
 });
 
 function showdata(key,data){
