@@ -23,5 +23,27 @@ class Index extends CI_Controller
 	public function top(){
 		echo 'hi';
 	}
+	
+	/**
+	 * 验证码
+	 *
+	 * @name ValidateCode
+	 * @author desand
+	 * @version 2.0.0
+	 */
+	public function validatecode()
+	{
+	
+		$this->load->file(APPPATH.'/libraries/validatecode/validatecode.php');
+		$vd = new ValidateCode();
+		$vd->createimg();
+	
+		$newdata = array(
+			'validatecode' => strtolower($vd->getCode())
+		);
+	
+		$this->session->set_userdata($newdata);
+		$vd->outPut();
+	}
 }
 ?>

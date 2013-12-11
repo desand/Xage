@@ -17,6 +17,8 @@ body{
 .component{ float:left; background:#333; color:#fff; font-size:24px; font-weight:bold; margin:0 10px 10px 0;cursor:pointer; /*border-top-left-radius: 30px;*/ outline:0;}
 .component:hover{outline:3px solid; outline-color:#000;}
 
+.opacity{ filter:alpha(opacity=0)}
+
 
 /* tile */
 .tile{ width:150px; height:150px; }

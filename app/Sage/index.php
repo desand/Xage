@@ -1,5 +1,9 @@
 <?php
 date_default_timezone_set('PRC');
+
+#For Application
+define('__ROLE__', 'admin');
+define('__KEY__', 'seasonfair');
 /*
  *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT

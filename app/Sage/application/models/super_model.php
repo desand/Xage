@@ -3,25 +3,25 @@
 class Super_model extends CI_Model {
 
     //Tables
-    var $target;
-    var $table;
-    var $show_id;
+    var $target = 'default';
+    var $table = 'regs_attendees';
+    var $show_id = FALSE;
 
     function __construct()
     {
         parent::__construct();
-        $this->setTarget();
-        $this->setTable('regs_attendees');
-        $this->setShowID(false);
+        $this->set_target($this->target);
+        $this->set_table($this->table);
+        $this->set_show_id($this->show_id);
     }
     
     /**
-     * @access private
-     * @name setTarget
+     * @access public
+     * @name set_target
      * @version 2.0.0
      * @author desand
      */
-    private function setTarget($target = 'default'){
+    public function set_target($target = 'default'){
     	switch($target){
     		case 'report':{
     			include(APPPATH.'config/db/'.$target.EXT);
@@ -41,22 +41,22 @@ class Super_model extends CI_Model {
     }
     
 	/**
-     * @access private
-     * @name setTable
+     * @access public
+     * @name set_table
      * @version 2.0.0
      * @author desand
      */
-    private function setTable($table){   	
+    public function set_table($table){   	
     	$this->table = $table;
     }
     
 	/**
-     * @access private
-     * @name setShowID
+     * @access public
+     * @name set_show_id
      * @version 2.0.0
      * @author desand
      */
-    private function setShowID($id){   	
+    public function set_show_id($id){   	
     	$this->show_id = $id;
     }
     
@@ -66,43 +66,16 @@ class Super_model extends CI_Model {
      * @version 2.0.0
      * @author desand
      */
-    public function q($q,$returnArray = true){
-    	if($returnArray){
+    public function q($q,$return_array = TRUE){
+    	if($return_array){
     		return $this->db->query($q)->result('array');
     	}else{
     		return $this->db->query($q);
     	}
     }
+
     
-    /**
-     * @access public
-     * @name issetTable
-     * @version 2.0.0
-     * @author desand
-     */
-    public function issetTable($db,$table){
-   		$q = "select TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_SCHEMA='".$db."' and TABLE_NAME='".$table."'";
-        if($this->q($q)){
-        	return true;
-        }
-        return false;
-    }
-    
-    /**
-     * @access public
-     * @name getShowTable
-     * @version 2.0.0
-     * @author desand
-     */
-    public function getShowTable($db,$table,$show_id){
-    	if(issetTable($db,$table.'_'.$show_id)){
-    		return $table.'_'.$show_id;
-    	}else{
-    		return $table;
-    	}
-    }
-    
-    /* BASE */
+    ## BASE ##
     function get_detail($id)
     {
     	return $this->db->get_where($this->table, array($this->id => $id))->first_row('array');
@@ -124,7 +97,7 @@ class Super_model extends CI_Model {
     	return $this->db->delete($this->table, array('id' => $id)); 
     }
     
-	function del_entry_by_fid($conditions)
+	function del_entry_by_other($conditions)
     {
     	return $this->db->delete($this->table, $conditions); 
     }

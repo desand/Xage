@@ -16,6 +16,31 @@
 // ------------------------------------------------------------------------
 
 /**
+ * Site token URL
+ *
+ * Create a local URL based on your basepath. Segments can be passed via the
+ * first parameter either as a string or an array.
+ *
+ * @access	public
+ * @param	string
+ * @return	string
+ */
+if ( ! function_exists('site_token_url'))
+{
+	function site_token_url($uri = '',$show_id = false)
+	{
+		$CI =& get_instance();
+		$url = $CI->config->site_url($uri);
+		if(__KEY__ && is_numeric($show_id)){
+			$url .= '/'.$show_id.'?token='.md5(__KEY__.$show_id);
+		}
+		return $url;
+	}
+}
+
+// ------------------------------------------------------------------------
+
+/**
  * CodeIgniter URL Helpers
  *
  * @package		CodeIgniter

@@ -10,7 +10,7 @@
 
 <link href="<?php echo base_url().'material/css/manage/index.css';?>" rel="stylesheet" type="text/css" />
 
-<script type="text/javascript" src="<?php echo base_url().'material/js/jquery/jquery.js';?>"></script>
+<script type="text/javascript" src="<?php echo base_url().'material/js/jquery/jquery-1.7.1.min.js';?>"></script>
 <script type="text/javascript" src="<?php echo base_url().'material/js/swipe.js';?>"></script>
 
 </head>
@@ -24,10 +24,10 @@
 </div>
 </div>
 
-<div class="wrapper" style="opacity:0;">
-	<div class="component background-color-greenLight tile" id="Dreg" url="<?php echo site_url('admin/main/index')?>"></div>
+<div class="wrapper opacity" style="opacity:0;">
+	<!-- <div class="component background-color-greenLight tile" id="Dreg" url="<?php echo site_url('admin/main/index')?>"></div>
 	<div class="component background-color-orange tile" id="Dticket"></div>
-	<div class="component background-color-grayDark tile double"></div>
+	<div class="component background-color-grayDark tile double"></div> -->
 </div>
 
 <input id="xmlurl" type="hidden" value="<?php echo site_url('admin/manage/xmlrequest').'?tar=dashboard'?>"/>
@@ -36,7 +36,6 @@
 var loadingtimer;
 
 $(document).ready(function(){
-
 	$('.component').click(function(){
 		loading();
 		$('#main',parent.document).attr('src',$(this).attr('url'));
@@ -81,7 +80,7 @@ var getWindowSize = function(){
 }
 function init(){
 	_initsize();
-	$('.wrapper').animate({'opacity':'1'},function(){$('#loading').parent().hide();});
+	$('.wrapper').animate({'opacity':1},function(){$('#loading').parent().hide();});
 }
 function _initsize(){
 	var str=getWindowSize();

@@ -11,7 +11,7 @@
 <?php endif;?>
 <title><?php echo $site['title']?></title>
 
-<script type="text/javascript" src="<?php echo base_url().'material/js/jquery/jquery.js';?>"></script>
+<script type="text/javascript" src="<?php echo base_url().'material/js/jquery/jquery-1.7.1.min.js';?>"></script>
 <script type="text/javascript" src="<?php echo base_url().'material/js/swipe.js';?>"></script>
 
 <style type="text/css">
@@ -45,8 +45,8 @@ body{
   position: relative;
 }
 .swipe,.swipe-wrap{height:auto}
-.frame{}
-.frame iframe{border:none;}
+.frame{ overflow:hidden;}
+.frame iframe{border:none; }
 .frame .gt{ position:absolute; right:0; top:50%; width:25px; height:50px; background:#333; color:#fff; margin-top:-25px; cursor:pointer; line-height:50px; font-size:20px;}
 .frame .gt:hover{ background:#005eac;}
 .frame .lt{ position:absolute; left:0; top:50%; width:25px; height:50px; background:#333; color:#fff; margin-top:-25px; cursor:pointer; line-height:50px; font-size:20px;}
@@ -60,7 +60,7 @@ body{
 	<div class="swipe-wrap">
 		<div class="frame">
 			<div style="position:relative;">
-			 	<iframe src="<?php echo site_url('admin/manage/dashboard')?>" id="dashboard" name="dashboard" scrolling="auto" width="100%" height="100%"></iframe>
+			 	<iframe src="<?php echo site_url('admin/manage/import').'?'.date('YmdHis')?>" id="dashboard" name="dashboard" scrolling="auto" width="100%" height="100%"></iframe>
 			</div>
 		</div>
 		<div class="frame">

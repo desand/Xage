@@ -11,7 +11,7 @@
 <?php endif;?>
 <title><?php echo $site['title']?></title>
 
-<script type="text/javascript" src="<?php echo base_url().'material/js/jquery/jquery.js';?>"></script>
+<script type="text/javascript" src="<?php echo base_url().'material/js/jquery/jquery-1.7.1.min.js';?>"></script>
 </head>
 
 <body>

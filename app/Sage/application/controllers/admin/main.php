@@ -5,7 +5,7 @@ class Main extends Base_Controller
 	private $url = '';
 	private $data = array();
 	private $show_id = false;
-	private $role = 'admin';
+	private $role = __ROLE__;
 	
 	public function __construct()
 	{
@@ -13,8 +13,9 @@ class Main extends Base_Controller
 		$this->url = strtolower(__CLASS__.'/'.$this->uri->rsegment(2));
 		
 		if($this->input->get('key')){
+			$this->load->library('encrypt');
 			$key = explode('_',$this->input->get('key'));
-			if (count($key)==2 && $key[1] == md5('seasonfair'.$key[0])){
+			if (count($key)==2 && $key[1] == $this->encrypt->encode($key[0],__KEY__)){
 				$url = current_url().'/'.$key[0].'?token='.$key[1];
 				redirect($url);
 			}

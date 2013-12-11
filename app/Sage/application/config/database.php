@@ -65,37 +65,5 @@ $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
 
-$db['report']['hostname'] = 'localhost';
-$db['report']['username'] = 'seasonfair';
-$db['report']['password'] = '18608';
-$db['report']['database'] = 'semi_report';
-$db['report']['dbdriver'] = 'mysql';
-$db['report']['dbprefix'] = '';
-$db['report']['pconnect'] = FALSE;
-$db['report']['db_debug'] = TRUE;
-$db['report']['cache_on'] = FALSE;
-$db['report']['cachedir'] = '';
-$db['report']['char_set'] = 'utf8';
-$db['report']['dbcollat'] = 'utf8_general_ci';
-$db['report']['swap_pre'] = '';
-$db['report']['autoinit'] = TRUE;
-$db['report']['stricton'] = FALSE;
-
-$db['schema']['hostname'] = 'localhost';
-$db['schema']['username'] = 'seasonfair';
-$db['schema']['password'] = '18608';
-$db['schema']['database'] = 'INFORMATION_SCHEMA';
-$db['schema']['dbdriver'] = 'mysql';
-$db['schema']['dbprefix'] = '';
-$db['schema']['pconnect'] = FALSE;
-$db['schema']['db_debug'] = TRUE;
-$db['schema']['cache_on'] = FALSE;
-$db['schema']['cachedir'] = '';
-$db['schema']['char_set'] = 'utf8';
-$db['schema']['dbcollat'] = 'utf8_general_ci';
-$db['schema']['swap_pre'] = '';
-$db['schema']['autoinit'] = TRUE;
-$db['schema']['stricton'] = FALSE;
-
 /* End of file database.php */
 /* Location: ./application/config/database.php */
