@@ -78,10 +78,10 @@ class Super_model extends CI_Model {
     ## BASE ##
     function get_detail($id)
     {
-    	return $this->db->get_where($this->table, array($this->id => $id))->first_row('array');
+    	return $this->db->get_where($this->table, array('id' => $id))->first_row('array');
     }
     
-    function get_detail_by_other($conditions)
+    function get_detail_by_other($conditions = array())
     {
     	return $this->db->get_where($this->table, $conditions)->result('array');
     }

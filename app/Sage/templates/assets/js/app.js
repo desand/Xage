@@ -2372,7 +2372,8 @@ var App = function () {
     var handleDateTimePickers = function () {
 
         if (jQuery().datepicker) {
-            $('.date-picker').datepicker();
+            $('.date-picker').datepicker({format: 'yyyy-mm-dd',minDate: '2013-01-01',
+                maxDate: '2014-12-31'});
         }
 
         if (jQuery().timepicker) {
@@ -2966,14 +2967,162 @@ var App = function () {
                 $('#form_wizard_1').find('.bar').css({
                     width: $percent + '%'
                 });
+                
+                //steps
+                if(current == 2){
+                	$('#form_wizard_1').find('.button-next').hide();
+                	var ajurl = $('#step2url').attr('value');
+            		var ajdata = '';
+            		$.ajax({
+            			url: ajurl,
+            			type: "POST",
+            			data: ajdata,
+            			dataType: 'json',
+            			async: true,//是否采取异步形式,false为同步
+            			error: function(){alert('error');},
+            			success: function (result){
+            				if(result.files.length>0){
+            					$('#filestable tbody tr').remove();
+            					$.each(result.files,function(i,v){
+            						var html = '<tr val="'+v+'">'+
+	            						'<td>'+(i+1)+'</td>'+
+	            						'<td>'+v+'</td>'+
+	            						'<td>'+(result.details[i]==undefined?'':result.details[i].volume)+'</td>'+
+	            						'<td>'+(result.details[i]==undefined?'':result.details[i].datetime)+'</td>'+
+	            						'<td>'+((result.details[i]==undefined 
+	            								|| result.details[i].result==undefined  
+	            								|| result.details[i].result.matchone==undefined)?'':('成功配对:'+result.details[i].result.matchone+'条<br/>完全没能配对:'
+	    										+result.details[i].result.matchno+'条<br/>存在配对1对N情况:'
+	    										+result.details[i].result.matchmore))+'</td>'+
+	            						'<td class="hidden-480">'+(result.details[i]==undefined?'<span class="text-error">未入库</span>':(result.details[i].status==1?'<span class="text-success">已处理</span>':'<span class="text-info">已入库</span>'))+'</td>'+
+	            						'<td>'+
+	            						'<a class="btn mini blue btn_indb" href="javascript:void(0)" style="'+(result.details[i]==undefined?'':'display:none;')+'"><i class="icon-upload"></i> 入库</a>'+
+	            						'<a class="btn mini green btn_analysis" style="'+(result.details[i]==undefined?'display:none;':(result.details[i].result==undefined || result.details[i].result.matchone==undefined)?'':'display:none;')+'" val="'+(result.details[i]==undefined?'':result.details[i].id)+'" href="javascript:void(0)"><i class="icon-bar-chart"></i> 分析</a>'+
+	            						'<a class="btn mini purple btn_match" href="javascript:void(0)" style="'+((result.details[i]==undefined 
+	            								|| result.details[i].result==undefined  
+	            								|| result.details[i].result.matchone==undefined
+	            								|| result.details[i].status=='1')?'display:none;':'')+'" val="'+(result.details[i]==undefined?'':result.details[i].id)+'"><i class="icon-ok-sign"></i> 配对</a>'+
+	            						//'<a class="btn mini red btn_del" href="javascript:void(0)"><i class="icon-trash"></i> 删除</a>'+
+	            						'</td>'+
+	            					'</tr>';
+            						$('#filestable tbody').append(html);
+            					});
+            					$('#filestable a.btn_indb').click(function(){
+            						btn_indb($(this));
+            					});
+            					$('#filestable a.btn_analysis').click(function(){
+            						btn_analysis($(this));
+            					});
+            					$('#filestable a.btn_match').click(function(){
+            						btn_match($(this));
+            					});
+            				}
+            			}
+            		});
+                }
+                
             }
         });
 
         $('#form_wizard_1').find('.button-previous').hide();
         $('#form_wizard_1 .button-submit').click(function () {
-            alert('Finished! Hope you like it :)');
+        	_block("<div>正在处理中...</div>");
+        	var data = new Object();
+        	data.id = $(this).attr('val');
+        	var ajurl = $('#donematchurl').attr('value');
+    		$.ajax({
+    			url: ajurl,
+    			type: "POST",
+    			data: data,
+    			dataType: 'json',
+    			async: true,//是否采取异步形式,false为同步
+    			error: function(){_block(false);alert('error');},
+    			success: function (result){
+    				//_block(false);
+    				if(result.error){
+    					_block(false);alert(result.error);
+    				}else{
+    					window.location.href=window.location.href;
+    				}
+    			}
+    		});
         }).hide();
     }
+    var btn_match = function(tar){
+    	_block("<div>正在处理中...</div>");
+    	var ajurl = $('#step3url').attr('value');
+		var ajdata = 'id='+tar.attr('val');
+		$.ajax({
+			url: ajurl,
+			type: "POST",
+			data: ajdata,
+			dataType: 'html',
+			async: true,//是否采取异步形式,false为同步
+			error: function(){_block(false);alert('error');},
+			success: function (result){
+				_block(false);
+				$('#tab3').html(result);
+			}
+		});
+    	
+    	$('#form_wizard_1').find('.button-next').click();
+    }
+    
+    var btn_analysis = function(tar){
+    	_block("<div>正在处理中...</div>");
+    	var ajurl = $('#doanalysisurl').attr('value');
+		var ajdata = 'id='+tar.attr('val');
+		$.ajax({
+			url: ajurl,
+			type: "POST",
+			data: ajdata,
+			dataType: 'json',
+			async: true,//是否采取异步形式,false为同步
+			error: function(){_block(false);alert('error');},
+			success: function (result){
+				_block(false);
+				if(result.error){
+					tar.parent().prev().prev().text(result.error);
+				}else{
+					tar.parent().prev().prev().html('成功配对:'+result.matchone+'条<br/>完全没能配对:'
+																+result.matchno+'条<br/>存在配对1对N情况:'
+																+result.matchmore);
+					tar.hide();
+					tar.parent().find('.btn_match').show().attr('val',tar.attr('val'));
+				}
+			}
+		});
+    }
+    
+    var btn_indb = function(tar){
+    	_block("<div>正在处理中...</div>");
+    	var ajurl = $('#doindburl').attr('value');
+		var ajdata = 'filename='+tar.parent().parent().attr('val');
+		$.ajax({
+			url: ajurl,
+			type: "POST",
+			data: ajdata,
+			dataType: 'json',
+			async: true,//是否采取异步形式,false为同步
+			error: function(){_block(false);alert('error');},
+			success: function (result){
+				_block(false);
+				if(result.error){
+					tar.parent().prev().prev().text(result.error);
+				}
+				if(result.volume){
+					tar.parent().parent().find('td:eq(2)').text(result.volume);
+					tar.parent().parent().find('td:eq(3)').text(result.datetime);
+					tar.next().attr('val',result.id);
+					
+					tar.parent().parent().find('.text-error').removeClass('text-error').addClass('text-info').text('已入库');
+					tar.parent().find('.btn_analysis').show();
+				}
+				tar.hide();
+			}
+		});
+    }
+    
 
     var handleFormValidation = function () {
 

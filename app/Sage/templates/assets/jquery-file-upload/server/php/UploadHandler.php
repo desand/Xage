@@ -698,7 +698,7 @@ class UploadHandler
     }
 
     public function post($print_response = true) {
-        if (isset($_REQUEST['_method']) && $_REQUEST['_method'] === 'DELETE') {
+    	if (isset($_REQUEST['_method']) && $_REQUEST['_method'] === 'DELETE') {
             return $this->delete($print_response);
         }
         $upload = isset($_FILES[$this->options['param_name']]) ?
@@ -720,6 +720,14 @@ class UploadHandler
             // param_name is an array identifier like "files[]",
             // $_FILES is a multi-dimensional array:
             foreach ($upload['tmp_name'] as $index => $value) {
+            	//$tmpname = explode('\\',$upload['tmp_name'][$index]);
+            	//print_r($upload['tmp_name'][$index]);
+            	//$tmpname = array_pop($tmpname);
+            	
+            	//$tmpurl = 'files/tmp/'.$tmpname;
+            	//move_uploaded_file($upload['tmp_name'][$index], $tmpurl);
+            	//chmod($tmpurl,0755);
+            	//$upload['tmp_name'][$index] = $tmpurl;
                 $files[] = $this->handle_file_upload(
                     $upload['tmp_name'][$index],
                     $file_name ? $file_name : $upload['name'][$index],
